@@ -1,0 +1,32 @@
+name: ColorTools
+version: '1.0-SNAPSHOT'
+main: org.plugin.colortools.ColorTools
+api-version: '1.20'
+load: STARTUP
+author: NSrank & Augment
+description: 让游戏内的各种信息自动支持MineDown格式的插件
+depend: [ProtocolLib]
+
+commands:
+  colortools:
+    description: ColorTools主命令
+    usage: /<command> [reload|help|test]
+    aliases: [ct, colors]
+
+permissions:
+  colortools.*:
+    description: ColorTools所有权限
+    default: op
+    children:
+      colortools.admin: true
+      colortools.reload: true
+      colortools.test: true
+  colortools.admin:
+    description: ColorTools管理员权限
+    default: op
+  colortools.reload:
+    description: 重载配置权限
+    default: op
+  colortools.test:
+    description: 测试MineDown格式权限
+    default: true

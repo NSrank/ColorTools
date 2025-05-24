@@ -1,0 +1,125 @@
+# ColorTools 中文语言文件
+
+# 通用消息
+general:
+  prefix: "&8[&6ColorTools&8]&r "
+  no-permission: "&c你没有权限执行此命令！"
+  player-only: "&c此命令只能由玩家执行！"
+  console-only: "&c此命令只能在控制台执行！"
+  unknown-command: "&c未知的子命令！使用 &e/colortools help &c查看帮助。"
+  config-reloaded: "&a配置文件已重新加载！"
+  plugin-disabled: "&c插件已禁用！"
+
+# 命令消息
+commands:
+  help:
+    header: "&6=== ColorTools 帮助 ==="
+    commands:
+      - "&e/colortools help &7- 显示此帮助信息"
+      - "&e/colortools reload &7- 重新加载配置文件"
+      - "&e/colortools test &7- 测试MineDown格式"
+      - "&e/colortools status &7- 显示插件状态"
+      - "&e/colortools toggle &7- 切换插件启用状态"
+    footer: "&6=========================="
+  
+  reload:
+    success: "&a配置文件重新加载成功！"
+    error: "&c重新加载配置文件时发生错误：&e{error}"
+  
+  test:
+    header: "&6=== MineDown 格式测试 ==="
+    description: "&7以下是一些MineDown格式的示例："
+    examples:
+      - "**&a粗体绿色文本**"
+      - "##&b斜体蓝色文本##"
+      - "__&e下划线黄色文本__"
+      - "~~&c删除线红色文本~~"
+      - "??&d混淆紫色文本??"
+      - "&rainbow&彩虹文本示例"
+      - "&#ff0000-#0000ff&红蓝渐变文本"
+      - "[&a执行命令&r](/help &7点击执行help命令)"
+    footer: "&6=========================="
+  
+  status:
+    header: "&6=== ColorTools 状态 ==="
+    enabled: "&a插件状态：&2启用"
+    disabled: "&c插件状态：&4禁用"
+    version: "&7版本：&e{version}"
+    minedown-enabled: "&7MineDown处理：&a启用"
+    minedown-disabled: "&7MineDown处理：&c禁用"
+    events-processed: "&7已处理事件：&e{count}"
+    messages-processed: "&7已处理消息：&e{count}"
+    footer: "&6=========================="
+  
+  toggle:
+    enabled: "&a插件已启用！"
+    disabled: "&c插件已禁用！"
+
+# 事件处理消息
+events:
+  chat:
+    processing: "&7正在处理聊天消息..."
+    processed: "&a聊天消息处理完成"
+    error: "&c处理聊天消息时发生错误：&e{error}"
+  
+  join:
+    processing: "&7正在处理加入消息..."
+    processed: "&a加入消息处理完成"
+    error: "&c处理加入消息时发生错误：&e{error}"
+  
+  quit:
+    processing: "&7正在处理退出消息..."
+    processed: "&a退出消息处理完成"
+    error: "&c处理退出消息时发生错误：&e{error}"
+  
+  death:
+    processing: "&7正在处理死亡消息..."
+    processed: "&a死亡消息处理完成"
+    error: "&c处理死亡消息时发生错误：&e{error}"
+
+# 错误消息
+errors:
+  config-load: "&c加载配置文件时发生错误：&e{error}"
+  config-save: "&c保存配置文件时发生错误：&e{error}"
+  minedown-parse: "&c解析MineDown格式时发生错误：&e{error}"
+  event-register: "&c注册事件监听器时发生错误：&e{error}"
+  permission-check: "&c检查权限时发生错误：&e{error}"
+
+# 调试消息
+debug:
+  plugin-enable: "&7[调试] 插件正在启用..."
+  plugin-disable: "&7[调试] 插件正在禁用..."
+  config-load: "&7[调试] 正在加载配置文件..."
+  event-register: "&7[调试] 正在注册事件监听器..."
+  minedown-process: "&7[调试] 正在处理MineDown格式：&e{message}"
+  cache-hit: "&7[调试] 缓存命中：&e{key}"
+  cache-miss: "&7[调试] 缓存未命中：&e{key}"
+
+# 性能消息
+performance:
+  processing-time: "&7消息处理耗时：&e{time}ms"
+  cache-stats: "&7缓存统计 - 命中：&a{hits}&7，未命中：&c{misses}&7，命中率：&e{ratio}%"
+  memory-usage: "&7内存使用：&e{used}MB / {total}MB"
+
+# 兼容性消息
+compatibility:
+  plugin-detected: "&7检测到插件：&e{plugin}"
+  plugin-hook: "&a成功挂钩插件：&e{plugin}"
+  plugin-unhook: "&c取消挂钩插件：&e{plugin}"
+  conflict-warning: "&c警告：检测到可能与 &e{plugin} &c冲突！"
+
+# 更新消息
+update:
+  available: "&a发现新版本：&e{version}&a！当前版本：&e{current}"
+  download: "&7下载地址：&b{url}"
+  changelog: "&7更新日志：&b{changelog}"
+  no-update: "&7当前已是最新版本。"
+
+# 示例消息（用于测试）
+examples:
+  welcome: "&6欢迎 **{player}** 加入服务器！"
+  goodbye: "&c玩家 **{player}** 离开了服务器。"
+  death: "&4{player} &c{cause}"
+  achievement: "&a{player} &7获得了成就 &e{achievement}&7！"
+  level-up: "&b{player} &7升级到了 &e{level} &7级！"
+  broadcast: "&8[&6公告&8] &r{message}"
