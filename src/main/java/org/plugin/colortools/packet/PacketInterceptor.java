@@ -9,6 +9,7 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import de.themoep.minedown.adventure.MineDown;
 import net.kyori.adventure.text.Component;
+<<<<<<< HEAD
 import net.kyori.adventure.text.ComponentLike;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.TranslatableComponent;
@@ -20,6 +21,10 @@ import de.themoep.minedown.adventure.MineDown;
 
 import java.util.ArrayList;
 import java.util.List;
+=======
+import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
 import org.plugin.colortools.ColorTools;
 import org.plugin.colortools.config.ConfigManager;
 
@@ -35,6 +40,7 @@ public class PacketInterceptor {
     public PacketInterceptor(ColorTools plugin, ConfigManager configManager) {
         this.plugin = plugin;
         this.configManager = configManager;
+<<<<<<< HEAD
 
         ProtocolManager tempManager = null;
         try {
@@ -43,16 +49,22 @@ public class PacketInterceptor {
             plugin.getLogger().warning("无法初始化ProtocolLib管理器: " + e.getMessage());
         }
         this.protocolManager = tempManager;
+=======
+        this.protocolManager = ProtocolLibrary.getProtocolManager();
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
     }
 
     /**
      * 注册数据包监听器
      */
     public void registerPacketListeners() {
+<<<<<<< HEAD
         if (protocolManager == null) {
             plugin.getLogger().warning("ProtocolManager未初始化，跳过数据包监听器注册");
             return;
         }
+=======
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
         // 拦截系统聊天消息数据包（死亡消息、加入/退出消息等）
         protocolManager.addPacketListener(new PacketAdapter(plugin, ListenerPriority.HIGHEST, PacketType.Play.Server.SYSTEM_CHAT) {
             @Override
@@ -91,6 +103,7 @@ public class PacketInterceptor {
             }
         });
 
+<<<<<<< HEAD
         // 注册玩家战斗死亡数据包监听器（死亡消息的真实来源！）
         protocolManager.addPacketListener(new PacketAdapter(plugin, ListenerPriority.HIGHEST, PacketType.Play.Server.PLAYER_COMBAT_KILL) {
             @Override
@@ -211,6 +224,8 @@ public class PacketInterceptor {
             }
         }
 
+=======
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
         if (configManager.isDebugMode()) {
             plugin.getLogger().info("[数据包拦截] 数据包监听器已注册");
         }
@@ -220,10 +235,13 @@ public class PacketInterceptor {
      * 注销数据包监听器
      */
     public void unregisterPacketListeners() {
+<<<<<<< HEAD
         if (protocolManager == null) {
             return;
         }
 
+=======
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
         protocolManager.removePacketListeners(plugin);
 
         if (configManager.isDebugMode()) {
@@ -236,6 +254,7 @@ public class PacketInterceptor {
      */
     private void processSystemChatPacket(PacketEvent event) {
         try {
+<<<<<<< HEAD
             // 检查ChatComponents字段是否存在且不为空
             if (event.getPacket().getChatComponents().size() == 0) {
                 if (configManager.isDebugMode()) {
@@ -250,6 +269,11 @@ public class PacketInterceptor {
                 if (configManager.isDebugMode()) {
                     plugin.getLogger().info("[数据包拦截] 系统聊天ChatComponent为null，跳过处理");
                 }
+=======
+            // 获取数据包中的消息内容
+            WrappedChatComponent chatComponent = event.getPacket().getChatComponents().read(0);
+            if (chatComponent == null) {
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
                 return;
             }
 
@@ -257,6 +281,7 @@ public class PacketInterceptor {
             String json = chatComponent.getJson();
             Component originalComponent = GsonComponentSerializer.gson().deserialize(json);
 
+<<<<<<< HEAD
             // 详细调试日志 - 查看实际收到的数据格式
             if (configManager.isDebugMode()) {
                 String legacyText = LegacyComponentSerializer.legacySection().serialize(originalComponent);
@@ -264,10 +289,17 @@ public class PacketInterceptor {
                 plugin.getLogger().info("[数据包拦截] 系统聊天原始消息 (Legacy): " + legacyText);
                 plugin.getLogger().info("[数据包拦截] 系统聊天原始消息 (Plain): " + plainText);
                 plugin.getLogger().info("[数据包拦截] 系统聊天原始消息 (JSON): " + json);
+=======
+            // 调试日志
+            if (configManager.isDebugMode()) {
+                String legacyText = LegacyComponentSerializer.legacySection().serialize(originalComponent);
+                plugin.getLogger().info("[数据包拦截] 系统聊天原始消息: " + legacyText);
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
             }
 
             // 检查是否包含需要处理的颜色代码
             String legacyText = LegacyComponentSerializer.legacySection().serialize(originalComponent);
+<<<<<<< HEAD
 
             if (configManager.isDebugMode()) {
                 plugin.getLogger().info("[数据包拦截] 检查颜色代码，文本: " + legacyText);
@@ -285,6 +317,12 @@ public class PacketInterceptor {
                 plugin.getLogger().info("[数据包拦截] 检测到颜色代码，开始处理");
             }
 
+=======
+            if (!containsHexColorCodes(legacyText)) {
+                return;
+            }
+
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
             // 处理颜色代码
             Component processedComponent = processPacketComponent(originalComponent);
 
@@ -314,6 +352,7 @@ public class PacketInterceptor {
      */
     private void processChatPacket(PacketEvent event) {
         try {
+<<<<<<< HEAD
             // 检查ChatComponents字段是否存在且不为空
             if (event.getPacket().getChatComponents().size() == 0) {
                 if (configManager.isDebugMode()) {
@@ -328,6 +367,11 @@ public class PacketInterceptor {
                 if (configManager.isDebugMode()) {
                     plugin.getLogger().info("[数据包拦截] 聊天ChatComponent为null，跳过处理");
                 }
+=======
+            // 获取数据包中的消息内容
+            WrappedChatComponent chatComponent = event.getPacket().getChatComponents().read(0);
+            if (chatComponent == null) {
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
                 return;
             }
 
@@ -401,7 +445,11 @@ public class PacketInterceptor {
     }
 
     /**
+<<<<<<< HEAD
      * 处理十六进制颜色代码 - 基于MineDown官方语法
+=======
+     * 处理十六进制颜色代码 - 简化策略：在空格处截断颜色
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
      */
     private String processHexColors(String text) {
         if (text == null || text.isEmpty()) {
@@ -414,6 +462,7 @@ public class PacketInterceptor {
             plugin.getLogger().info("[数据包拦截] 颜色处理输入: " + text);
         }
 
+<<<<<<< HEAD
         // 基于MineDown官方语法的颜色处理
         if (result.contains("&#")) {
             // 策略1：处理完整格式 &#rrggbb& - 在空格前添加&r
@@ -435,6 +484,22 @@ public class PacketInterceptor {
 
             // 策略6：移除末尾的重置（如果在空格前）
             result = result.replaceAll("&r\\s+", " ");
+=======
+        // 简化的颜色截断策略：在空格处添加&r
+        if (result.contains("&#")) {
+            // 策略：在每个空格前添加&r来截断颜色
+            // 这样可以确保颜色不会泄露到空格后的内容
+            result = result.replaceAll("(?<=&#[0-9a-fA-F]{6}&[^\\s]*?)\\s", "&r ");
+
+            // 处理渐变色格式
+            result = result.replaceAll("(?<=&#[0-9a-fA-F]{6}-#[0-9a-fA-F]{6}&[^\\s]*?)\\s", "&r ");
+
+            // 处理没有结束符的颜色代码
+            result = result.replaceAll("(?<=&#[0-9a-fA-F]{6}[^\\s]*?)\\s", "&r ");
+
+            // 清理多余的重置代码
+            result = result.replaceAll("(&r)+", "&r");
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
         }
 
         if (configManager.isDebugMode() && !result.equals(text)) {
@@ -445,6 +510,7 @@ public class PacketInterceptor {
     }
 
     /**
+<<<<<<< HEAD
      * 检查是否包含十六进制颜色代码 - 简化检测
      */
     private boolean containsHexColorCodes(String text) {
@@ -1296,5 +1362,11 @@ public class PacketInterceptor {
         } catch (Exception e) {
             return null;
         }
+=======
+     * 检查是否包含十六进制颜色代码
+     */
+    private boolean containsHexColorCodes(String text) {
+        return text != null && text.contains("&#");
+>>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
     }
 }

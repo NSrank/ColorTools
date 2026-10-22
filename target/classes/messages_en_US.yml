@@ -1,0 +1,125 @@
+# ColorTools English Language File
+
+# General messages
+general:
+  prefix: "&8[&6ColorTools&8]&r "
+  no-permission: "&cYou don't have permission to execute this command!"
+  player-only: "&cThis command can only be executed by players!"
+  console-only: "&cThis command can only be executed from console!"
+  unknown-command: "&cUnknown subcommand! Use &e/colortools help &cfor help."
+  config-reloaded: "&aConfiguration file has been reloaded!"
+  plugin-disabled: "&cPlugin is disabled!"
+
+# Command messages
+commands:
+  help:
+    header: "&6=== ColorTools Help ==="
+    commands:
+      - "&e/colortools help &7- Show this help message"
+      - "&e/colortools reload &7- Reload configuration file"
+      - "&e/colortools test &7- Test MineDown format"
+      - "&e/colortools status &7- Show plugin status"
+      - "&e/colortools toggle &7- Toggle plugin enabled status"
+    footer: "&6=========================="
+  
+  reload:
+    success: "&aConfiguration file reloaded successfully!"
+    error: "&cError occurred while reloading configuration: &e{error}"
+  
+  test:
+    header: "&6=== MineDown Format Test ==="
+    description: "&7Here are some MineDown format examples:"
+    examples:
+      - "**&aBold green text**"
+      - "##&bItalic blue text##"
+      - "__&eUnderlined yellow text__"
+      - "~~&cStrikethrough red text~~"
+      - "??&dObfuscated purple text??"
+      - "&rainbow&Rainbow text example"
+      - "&#ff0000-#0000ff&Red to blue gradient text"
+      - "[&aExecute command&r](/help &7Click to execute help command)"
+    footer: "&6=========================="
+  
+  status:
+    header: "&6=== ColorTools Status ==="
+    enabled: "&aPlugin Status: &2Enabled"
+    disabled: "&cPlugin Status: &4Disabled"
+    version: "&7Version: &e{version}"
+    minedown-enabled: "&7MineDown Processing: &aEnabled"
+    minedown-disabled: "&7MineDown Processing: &cDisabled"
+    events-processed: "&7Events Processed: &e{count}"
+    messages-processed: "&7Messages Processed: &e{count}"
+    footer: "&6=========================="
+  
+  toggle:
+    enabled: "&aPlugin enabled!"
+    disabled: "&cPlugin disabled!"
+
+# Event processing messages
+events:
+  chat:
+    processing: "&7Processing chat message..."
+    processed: "&aChat message processed"
+    error: "&cError processing chat message: &e{error}"
+  
+  join:
+    processing: "&7Processing join message..."
+    processed: "&aJoin message processed"
+    error: "&cError processing join message: &e{error}"
+  
+  quit:
+    processing: "&7Processing quit message..."
+    processed: "&aQuit message processed"
+    error: "&cError processing quit message: &e{error}"
+  
+  death:
+    processing: "&7Processing death message..."
+    processed: "&aDeath message processed"
+    error: "&cError processing death message: &e{error}"
+
+# Error messages
+errors:
+  config-load: "&cError loading configuration file: &e{error}"
+  config-save: "&cError saving configuration file: &e{error}"
+  minedown-parse: "&cError parsing MineDown format: &e{error}"
+  event-register: "&cError registering event listeners: &e{error}"
+  permission-check: "&cError checking permissions: &e{error}"
+
+# Debug messages
+debug:
+  plugin-enable: "&7[Debug] Plugin is enabling..."
+  plugin-disable: "&7[Debug] Plugin is disabling..."
+  config-load: "&7[Debug] Loading configuration file..."
+  event-register: "&7[Debug] Registering event listeners..."
+  minedown-process: "&7[Debug] Processing MineDown format: &e{message}"
+  cache-hit: "&7[Debug] Cache hit: &e{key}"
+  cache-miss: "&7[Debug] Cache miss: &e{key}"
+
+# Performance messages
+performance:
+  processing-time: "&7Message processing time: &e{time}ms"
+  cache-stats: "&7Cache stats - Hits: &a{hits}&7, Misses: &c{misses}&7, Hit rate: &e{ratio}%"
+  memory-usage: "&7Memory usage: &e{used}MB / {total}MB"
+
+# Compatibility messages
+compatibility:
+  plugin-detected: "&7Detected plugin: &e{plugin}"
+  plugin-hook: "&aSuccessfully hooked plugin: &e{plugin}"
+  plugin-unhook: "&cUnhooked plugin: &e{plugin}"
+  conflict-warning: "&cWarning: Possible conflict detected with &e{plugin}&c!"
+
+# Update messages
+update:
+  available: "&aNew version available: &e{version}&a! Current: &e{current}"
+  download: "&7Download: &b{url}"
+  changelog: "&7Changelog: &b{changelog}"
+  no-update: "&7You are running the latest version."
+
+# Example messages (for testing)
+examples:
+  welcome: "&6Welcome **{player}** to the server!"
+  goodbye: "&cPlayer **{player}** left the server."
+  death: "&4{player} &c{cause}"
+  achievement: "&a{player} &7earned the achievement &e{achievement}&7!"
+  level-up: "&b{player} &7leveled up to &e{level}&7!"
+  broadcast: "&8[&6Announcement&8] &r{message}"
