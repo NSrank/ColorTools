@@ -8,6 +8,7 @@ import org.bukkit.event.server.BroadcastMessageEvent;
 import org.bukkit.event.server.ServerCommandEvent;
 import org.plugin.colortools.ColorTools;
 import org.plugin.colortools.config.ConfigManager;
+import org.plugin.colortools.utils.LogLimiter;
 import org.plugin.colortools.utils.MessageProcessor;
 
 /**
@@ -63,10 +64,7 @@ public class ServerEventListener implements Listener {
             }
 
         } catch (Exception e) {
-            plugin.getLogger().warning("处理广播消息事件时发生错误: " + e.getMessage());
-            if (configManager.isDebugMode()) {
-                e.printStackTrace();
-            }
+            LogLimiter.warn(plugin.getLogger(), "server.broadcast", "处理广播消息事件时发生错误", e);
         }
     }
 
@@ -97,10 +95,7 @@ public class ServerEventListener implements Listener {
             }
 
         } catch (Exception e) {
-            plugin.getLogger().warning("处理服务器命令事件时发生错误: " + e.getMessage());
-            if (configManager.isDebugMode()) {
-                e.printStackTrace();
-            }
+            LogLimiter.warn(plugin.getLogger(), "server.command", "处理服务器命令事件时发生错误", e);
         }
     }
 

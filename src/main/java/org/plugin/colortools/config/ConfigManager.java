@@ -49,8 +49,7 @@ public class ConfigManager {
             plugin.getLogger().info("配置文件加载完成。");
             
         } catch (Exception e) {
-            plugin.getLogger().severe("加载配置文件时发生错误：" + e.getMessage());
-            e.printStackTrace();
+            plugin.getLogger().log(java.util.logging.Level.SEVERE, "加载配置文件时发生错误", e);
         }
     }
     

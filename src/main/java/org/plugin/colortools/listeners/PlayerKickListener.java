@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.plugin.colortools.ColorTools;
 import org.plugin.colortools.config.ConfigManager;
+import org.plugin.colortools.utils.LogLimiter;
 import org.plugin.colortools.utils.MessageProcessor;
 
 /**
@@ -78,10 +79,7 @@ public class PlayerKickListener implements Listener {
             }
 
         } catch (Exception e) {
-            plugin.getLogger().warning("处理玩家踢出事件时发生错误: " + e.getMessage());
-            if (configManager.isDebugMode()) {
-                e.printStackTrace();
-            }
+            LogLimiter.warn(plugin.getLogger(), "kick.event", "处理玩家踢出事件时发生错误", e);
         }
     }
 }

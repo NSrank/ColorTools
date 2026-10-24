@@ -4,6 +4,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.plugin.colortools.ColorTools;
 import org.plugin.colortools.config.ConfigManager;
+import org.plugin.colortools.utils.LogLimiter;
 import org.plugin.colortools.utils.MessageProcessor;
 
 import java.util.ArrayList;
@@ -72,8 +73,7 @@ public class EventManager {
             plugin.getLogger().info("所有事件监听器注册完成，共注册 " + registeredListeners.size() + " 个监听器");
             
         } catch (Exception e) {
-            plugin.getLogger().severe("注册事件监听器时发生错误: " + e.getMessage());
-            e.printStackTrace();
+            LogLimiter.warn(plugin.getLogger(), "events.register", "注册事件监听器时发生错误", e);
         }
     }
     

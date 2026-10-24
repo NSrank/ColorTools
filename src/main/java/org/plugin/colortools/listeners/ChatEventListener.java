@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.plugin.colortools.ColorTools;
 import org.plugin.colortools.config.ConfigManager;
+import org.plugin.colortools.utils.LogLimiter;
 import org.plugin.colortools.utils.MessageProcessor;
 
 /**
@@ -42,10 +43,7 @@ public class ChatEventListener implements Listener {
             try {
                 processChatMessageDelayed(event);
             } catch (Exception e) {
-                plugin.getLogger().warning("延迟处理聊天消息时发生错误: " + e.getMessage());
-                if (configManager.isDebugMode()) {
-                    e.printStackTrace();
-                }
+                LogLimiter.warn(plugin.getLogger(), "chat.delayed", "延迟处理聊天消息时发生错误", e);
             }
         }, 1L); // 延迟1tick
     }
@@ -121,10 +119,7 @@ public class ChatEventListener implements Listener {
             }
 
         } catch (Exception e) {
-            plugin.getLogger().warning("处理命令预处理事件时发生错误: " + e.getMessage());
-            if (configManager.isDebugMode()) {
-                e.printStackTrace();
-            }
+            LogLimiter.warn(plugin.getLogger(), "chat.commandPreprocess", "处理命令预处理事件时发生错误", e);
         }
     }
 

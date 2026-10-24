@@ -94,10 +94,7 @@ public class MessageProcessor {
             return component;
 
         } catch (Exception e) {
-            plugin.getLogger().warning("处理消息时发生错误: " + e.getMessage());
-            if (configManager.isDebugMode()) {
-                e.printStackTrace();
-            }
+            LogLimiter.warn(plugin.getLogger(), "processor.message", "处理消息时发生错误", e);
 
             // 发生错误时返回原始文本
             return Component.text(text);
@@ -120,10 +117,7 @@ public class MessageProcessor {
             return processComponentSimple(component);
 
         } catch (Exception e) {
-            plugin.getLogger().warning("处理Component时发生错误: " + e.getMessage());
-            if (configManager.isDebugMode()) {
-                e.printStackTrace();
-            }
+            LogLimiter.warn(plugin.getLogger(), "processor.component", "处理Component时发生错误", e);
             return component; // 发生错误时返回原始Component
         }
     }
@@ -150,10 +144,7 @@ public class MessageProcessor {
             return postProcessComponentAdvanced(component);
 
         } catch (Exception e) {
-            plugin.getLogger().warning("后处理Component时发生错误: " + e.getMessage());
-            if (configManager.isDebugMode()) {
-                e.printStackTrace();
-            }
+            LogLimiter.warn(plugin.getLogger(), "processor.postProcess", "后处理Component时发生错误", e);
             return component; // 发生错误时返回原始Component
         }
     }

@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.plugin.colortools.ColorTools;
 import org.plugin.colortools.config.ConfigManager;
+import org.plugin.colortools.utils.LogLimiter;
 import org.plugin.colortools.utils.MessageProcessor;
 
 /**
@@ -41,10 +42,7 @@ public class PlayerJoinQuitListener implements Listener {
             try {
                 processJoinMessageDelayed(event);
             } catch (Exception e) {
-                plugin.getLogger().warning("延迟处理加入消息时发生错误: " + e.getMessage());
-                if (configManager.isDebugMode()) {
-                    e.printStackTrace();
-                }
+                LogLimiter.warn(plugin.getLogger(), "joinquit.join.delayed", "延迟处理加入消息时发生错误", e);
             }
         }, 1L); // 延迟1tick
     }
@@ -102,10 +100,7 @@ public class PlayerJoinQuitListener implements Listener {
             try {
                 processQuitMessageDelayed(event);
             } catch (Exception e) {
-                plugin.getLogger().warning("延迟处理退出消息时发生错误: " + e.getMessage());
-                if (configManager.isDebugMode()) {
-                    e.printStackTrace();
-                }
+                LogLimiter.warn(plugin.getLogger(), "joinquit.quit.delayed", "延迟处理退出消息时发生错误", e);
             }
         }, 1L); // 延迟1tick
     }

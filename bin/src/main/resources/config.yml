@@ -1,0 +1,154 @@
+# ColorTools 配置文件
+# 让游戏内的各种信息自动支持MineDown格式
+
+# 插件设置
+settings:
+  # 是否启用插件
+  enabled: true
+  # 是否启用调试模式
+  debug: false
+  # 语言设置 (zh_CN, en_US)
+  language: zh_CN
+  # 是否在控制台显示详细日志
+  verbose-logging: false
+
+# MineDown处理设置
+minedown:
+  # 是否启用MineDown格式处理
+  enabled: true
+  # 是否处理传统颜色代码 (&a, &c等)
+  process-legacy-colors: true
+  # 是否处理十六进制颜色代码 (&#ff0000)
+  process-hex-colors: true
+  # 是否处理渐变色
+  process-gradients: true
+  # 是否处理彩虹色
+  process-rainbow: true
+  # 是否处理格式化代码 (**粗体**, ##斜体##等)
+  process-formatting: true
+  # 是否处理点击和悬停事件
+  process-events: true
+
+# 事件处理设置
+events:
+  # 聊天消息
+  chat:
+    enabled: true
+    # 是否处理玩家聊天消息
+    process-player-chat: true
+    # 是否处理系统消息
+    process-system-messages: true
+    # 聊天消息优先级 (LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR)
+    priority: NORMAL
+  
+  # 玩家加入消息
+  join:
+    enabled: true
+    # 是否处理加入消息
+    process-join-messages: true
+    # 加入消息优先级
+    priority: NORMAL
+  
+  # 玩家退出消息
+  quit:
+    enabled: true
+    # 是否处理退出消息
+    process-quit-messages: true
+    # 退出消息优先级
+    priority: NORMAL
+  
+  # 死亡消息
+  death:
+    enabled: true
+    # 是否处理死亡消息
+    process-death-messages: true
+    # 死亡消息优先级
+    priority: NORMAL
+  
+  # 踢出消息
+  kick:
+    enabled: true
+    # 是否处理踢出消息
+    process-kick-messages: true
+    # 踢出消息优先级
+    priority: NORMAL
+  
+  # 服务器消息
+  server:
+    enabled: true
+    # 是否处理服务器广播消息
+    process-broadcast-messages: true
+    # 是否处理MOTD消息
+    process-motd: true
+    # 服务器消息优先级
+    priority: NORMAL
+
+# 消息过滤设置
+filters:
+  # 是否启用消息过滤
+  enabled: true
+  # 过滤规则列表
+  rules:
+    # 阻止某些特殊字符组合
+    - pattern: "\\[\\]\\(\\)"
+      replacement: ""
+      description: "移除空的MineDown标记"
+    # 限制过长的URL
+    - pattern: "\\[([^\\]]{100,})\\]\\([^\\)]+\\)"
+      replacement: "[链接过长已省略]($2)"
+      description: "缩短过长的链接文本"
+
+# 性能设置
+performance:
+  # 是否启用异步处理
+  async-processing: true
+  # 消息处理缓存大小
+  cache-size: 1000
+  # 缓存过期时间 (秒)
+  cache-expire-time: 300
+  # 是否启用消息预处理
+  enable-preprocessing: true
+
+# 兼容性设置
+compatibility:
+  # 与其他插件的兼容性
+  plugins:
+    # EssentialsX兼容
+    essentialsx: true
+    # ChatManager兼容
+    chatmanager: true
+    # HuskChat兼容
+    huskchat: true
+    # PlaceholderAPI兼容
+    placeholderapi: true
+  
+  # 是否尝试自动检测其他聊天插件
+  auto-detect-chat-plugins: true
+  # 是否在其他插件之后处理消息
+  process-after-other-plugins: true
+
+# 测试设置
+testing:
+  # 是否启用测试模式
+  enabled: false
+  # 测试消息列表
+  test-messages:
+    - "**粗体文本** 和 ##斜体文本##"
+    - "&a绿色 &c红色 &#ff0000自定义红色"
+    - "[点击这里](https://example.com 悬停文本)"
+    - "&rainbow&彩虹文本"
+    - "&#ff0000-#0000ff&渐变文本"
+    - "~~删除线~~ __下划线__ ??混淆文本??"
+
+# 日志设置
+logging:
+  # 是否记录处理的消息
+  log-processed-messages: false
+  # 是否记录错误信息
+  log-errors: true
+  # 是否记录性能统计
+  log-performance: false
+  # 日志文件路径 (相对于插件数据文件夹)
+  log-file: "colortools.log"
+  # 日志级别 (INFO, WARNING, SEVERE)
+  log-level: INFO

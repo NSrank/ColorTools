@@ -63,8 +63,7 @@ public class LanguageManager {
             plugin.getLogger().info("语言文件已加载: " + fileName);
 
         } catch (Exception e) {
-            plugin.getLogger().severe("加载语言文件时发生错误: " + e.getMessage());
-            e.printStackTrace();
+            plugin.getLogger().log(java.util.logging.Level.SEVERE, "加载语言文件时发生错误", e);
 
             // 使用默认语言
             loadDefaultLanguage();

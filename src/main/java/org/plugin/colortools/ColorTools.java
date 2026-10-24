@@ -55,8 +55,7 @@ public final class ColorTools extends JavaPlugin {
             getLogger().info("===================================");
 
         } catch (Exception e) {
-            getLogger().severe("插件启用失败：" + e.getMessage());
-            e.printStackTrace();
+            getLogger().log(java.util.logging.Level.SEVERE, "插件启用失败", e);
             getServer().getPluginManager().disablePlugin(this);
         }
     }
@@ -138,7 +137,6 @@ public final class ColorTools extends JavaPlugin {
      * 注册数据包拦截器
      */
     private void registerPacketInterceptors() {
-<<<<<<< HEAD
         try {
             if (getServer().getPluginManager().getPlugin("ProtocolLib") == null) {
                 getLogger().warning("ProtocolLib 未找到！数据包拦截功能将不可用。");
@@ -152,16 +150,6 @@ public final class ColorTools extends JavaPlugin {
             getLogger().warning("注册数据包拦截器失败: " + e.getMessage());
             getLogger().warning("数据包拦截功能将不可用，但插件将继续运行。");
         }
-=======
-        if (getServer().getPluginManager().getPlugin("ProtocolLib") == null) {
-            getLogger().severe("ProtocolLib 未找到！数据包拦截功能需要 ProtocolLib 插件。");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
-
-        packetInterceptor.registerPacketListeners();
-        getLogger().info("数据包拦截器已注册。");
->>>>>>> c01c6def98bea63ce10b8204a905ddb23292e87b
     }
 
     /**
